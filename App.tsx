@@ -8,6 +8,11 @@ import Ballmove from './src/screens/animation/ballmove';
 import ExpensesScreen from './src/screens/payment';
 import SummeryScreen from './src/screens/payment/test';
 import BugetLimit from './src/screens/bugetlimit';
+import Parent from './src/usememcallback/parent';
+import Router from './src/router';
+import RouterScreen from './src/router';
+import Horizontalprogress from './src/component/progressbar/horizontalprogress';
+import SignUp from './src/screens/bugetlimit/signup';
 
 export default function App() {
   return (
@@ -21,6 +26,10 @@ export default function App() {
       {/* <Test /> */}
       {/* <SummeryScreen /> */}
       {/* <BugetLimit /> */}
+      {/* <Parent /> */}
+      {/* <RouterScreen /> */}
+      {/* <Horizontalprogress /> */}
+      <SignUp />
     </>
   );
 }

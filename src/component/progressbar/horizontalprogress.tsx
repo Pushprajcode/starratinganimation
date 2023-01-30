@@ -1,76 +1,100 @@
-import {StyleSheet, Text, View, Animated} from 'react-native';
-import React, {useEffect, useRef} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Animated,
+  TouchableOpacity,
+  Image,
+  FlatList,
+} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import Snackbar from 'react-native-snackbar';
 import COLORS from '../../utils/colors';
 import LinearGradient from 'react-native-linear-gradient';
+import {GalleryPermission} from '../../utils/permissions';
+import ImagePicker from 'react-native-image-crop-picker';
+import ImageCropPicker from 'react-native-image-crop-picker';
 
 const AnimatedGradient = Animated.createAnimatedComponent(LinearGradient);
 
-export default function horizontalprogress() {
-  const leftValue = useRef(new Animated.Value(0)).current;
+export default function Horizontalprogress() {
+  const [imageProfile, setImgaeProfile] = useState('');
+  // const [multiple, setMultiple] = useState('');
+  // const [viewProfile, setviewProfile] = useState('');
+  const [profile, setProfile] = useState([]);
+  // console.log('------->', profile);
 
-  // percentage = 50%; width = 155
-  useEffect(() => {
-    Animated.timing(leftValue, {
-      toValue: 1,
-      duration: 3000,
-      useNativeDriver: true,
-    }).start();
-  }, []);
+  const onpress = () => {
+    GalleryPermission();
+    // openGallery();
+  };
+  const openGallery = () => {
+    // ImagePicker.openPicker({
+    //   width: 300,
+    //   height: 400,
+    //   cropping: true,
+    // }).then(image => {
+    //   setImgaeProfile(image.path);
+    // });
+    // ImagePicker.openPicker({
+    //   multiple: true,
+    // }).then(images => {
+    //   // console.log(images);
+    //   // images.map((item: any) => {
+    //   //   // console.log('------>', item);
+    //   //   // setProfile(item);
+    //   // });
+    //   // setProfile(images);
+    //   setProfile(images);
+    // });
+    // ImagePicker.openCropper({
+    //   path: 'my-file-path.jpg',
+    //   width: 300,
+    //   height: 400
+    // }).then(image => {
+    //   console.log(image);
+    // });
+    //     ImagePicker.openCropper({
+    // path:
+    //     })
+  };
+  Snackbar.show({
+    text: 'invalid credetail sir',
+    duration: Snackbar.LENGTH_SHORT,
+  });
+  // const renderItem = ({item}) => {
+  //   console.log('----->', item);
+  //   return (
+  //     <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+  //       <Image style={{height: 40, width: 40}} source={{uri: item.path}} />
+  //     </View>
+  //   );
+  // };
 
   return (
-    <View
-      style={{
-        borderWidth: 1,
-        borderColor: COLORS.GREY,
-        borderRadius: 20,
-        height: 30,
-        width: 310,
-        marginBottom: 'auto',
-        alignSelf: 'center',
-        // alignItems: 'flex-start',
-        marginTop: 70,
-        // overflow: 'hidden',
-      }}>
-      <AnimatedGradient
-        start={{x: 0, y: 0}}
-        end={{x: 1, y: 0}}
-        colors={['#33b3ea', '#dc9ee6', '#ec5675']}
-        style={[
-          styles.linear,
-          {
-            transform: [
-              {
-                scaleX: leftValue.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [0, 1],
-                }),
-              },
-            ],
-          },
-        ]}>
-        {/* <Text>{'$750'}</Text> */}
-      </AnimatedGradient>
+    <View style={{alignItems: 'center', justifyContent: 'center'}}>
+      <TouchableOpacity onPress={onpress}>
+        <Text>{'PERMISSION'}</Text>
+        {/* <Image style={{height: 40, width: 40}} source={{uri: imageProfile}} /> */}
+        {/* <Image style={{height: 40, width: 40}} source={{uri: imageProfile}} /> */}
+        {/* <FlatList data={profile} renderItem={renderItem} /> */}
+        {/* {profile.map((item: any, index) => {
+          console.log('first', item.path);
+          return (
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                backgroundColor: 'red',
+              }}>
+              <Image
+                style={{height: 40, width: 40}}
+                source={{uri: item.path}}
+              />
+            </View>
+          );
+        })} */}
+      </TouchableOpacity>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  linearGradient: {
-    flex: 1,
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderRadius: 5,
-  },
-  linear: {
-    height: 30,
-    width: 200,
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderRadius: 20,
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-  },
-  buttonText: {
-    fontSize: 18,
-  },
-});

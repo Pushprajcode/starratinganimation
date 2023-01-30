@@ -1,5 +1,5 @@
 const LOCAL_IMAGES = {
-  BOY_IMAGE: require('../images/boyface.png'),
+  BOY_IMAGE: require('../assets/images/backgroundSmall.png'),
   WOMEN: require('../images/woman.png'),
   FOOD_IMAGE: require('../images/burger.png'),
 
